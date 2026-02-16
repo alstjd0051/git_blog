@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import "./globals.css";
 
 const inter = Inter({
@@ -40,8 +39,14 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} flex min-h-screen flex-col antialiased`}
       >
+        {/* 메쉬 그라디언트 배경 */}
+        <div className="mesh-gradient-bg" aria-hidden="true">
+          <div className="mesh-orb-1" />
+          <div className="mesh-orb-2" />
+        </div>
+
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="relative flex-1">{children}</main>
       </body>
     </html>
   );
