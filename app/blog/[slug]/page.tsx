@@ -42,7 +42,7 @@ export default async function PostPage({ params }: Props) {
       {/* Back button */}
       <Link
         href="/blog"
-        className="mb-8 inline-flex items-center gap-1 text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+        className="mb-8 inline-flex items-center gap-1 text-sm text-white/40 transition-colors hover:text-white/80"
       >
         <svg
           className="h-4 w-4"
@@ -62,29 +62,29 @@ export default async function PostPage({ params }: Props) {
 
       {/* Post header */}
       <header className="mb-10">
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="mb-4 flex flex-wrap gap-2">
           {post.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-600 dark:bg-blue-950 dark:text-blue-400"
+              className="rounded-full bg-blue-500/15 px-3 py-1 text-xs font-medium text-blue-400 backdrop-blur-sm border border-blue-400/20"
             >
               {tag}
             </span>
           ))}
         </div>
-        <h1 className="text-3xl font-bold leading-tight text-zinc-900 dark:text-zinc-100 sm:text-4xl">
+        <h1 className="text-3xl font-bold leading-tight text-white/95 sm:text-4xl">
           {post.title}
         </h1>
-        <p className="mt-3 text-lg text-zinc-600 dark:text-zinc-400">
+        <p className="mt-3 text-lg text-white/50">
           {post.description}
         </p>
-        <time className="mt-4 block text-sm text-zinc-400 dark:text-zinc-500">
+        <time className="mt-4 block text-sm text-white/30">
           {format(new Date(post.date), "yyyy년 M월 d일", { locale: ko })}
         </time>
       </header>
 
       {/* Divider */}
-      <hr className="mb-10 border-zinc-200 dark:border-zinc-800" />
+      <hr className="mb-10 border-white/8" />
 
       {/* Post content */}
       <article

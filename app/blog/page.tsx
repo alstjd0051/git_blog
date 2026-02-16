@@ -7,10 +7,10 @@ export default async function BlogPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-6 py-16">
-      <h1 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
+      <h1 className="text-3xl font-bold text-white/95">
         Blog
       </h1>
-      <p className="mt-2 text-zinc-600 dark:text-zinc-400">
+      <p className="mt-2 text-white/50">
         총 {posts.length}개의 글이 있습니다.
       </p>
 

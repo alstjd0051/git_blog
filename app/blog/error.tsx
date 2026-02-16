@@ -16,9 +16,9 @@ export default function BlogError({
 
   return (
     <div className="mx-auto flex min-h-[60vh] max-w-4xl flex-col items-center justify-center px-6 text-center">
-      <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-red-100 dark:bg-red-950">
+      <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-red-500/15 backdrop-blur-md border border-red-400/20">
         <svg
-          className="h-8 w-8 text-red-600 dark:text-red-400"
+          className="h-8 w-8 text-red-400"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={2}
@@ -31,22 +31,22 @@ export default function BlogError({
           />
         </svg>
       </div>
-      <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
+      <h2 className="text-xl font-bold text-white/90">
         블로그를 불러올 수 없습니다
       </h2>
-      <p className="mt-2 text-zinc-600 dark:text-zinc-400">
+      <p className="mt-2 text-white/50">
         게시글을 불러오는 중 문제가 발생했습니다.
       </p>
       <div className="mt-6 flex gap-3">
         <button
           onClick={reset}
-          className="inline-flex rounded-full bg-blue-600 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+          className="inline-flex rounded-full bg-blue-500/80 px-6 py-3 text-sm font-medium text-white backdrop-blur-sm border border-blue-400/30 shadow-lg shadow-blue-500/25 transition-all hover:bg-blue-500/90"
         >
           다시 시도
         </button>
         <Link
           href="/"
-          className="inline-flex rounded-full border border-zinc-300 px-6 py-3 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+          className="inline-flex rounded-full bg-white/8 px-6 py-3 text-sm font-medium text-white/70 backdrop-blur-md border border-white/15 transition-all hover:bg-white/14 hover:text-white/90"
         >
           홈으로 돌아가기
         </Link>

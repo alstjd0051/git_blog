@@ -18,6 +18,10 @@
 # production
 /build
 
+# cursor / agents (로컬 전용)
+.cursor/
+.agents/
+
 # misc
 .DS_Store
 *.pem
