@@ -1,12 +1,20 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
+import { useForm, useWatch } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import type { PostMeta } from "./lib/posts";
 import PostCard from "./PostCard";
 
-type SortOption = "newest" | "oldest" | "title-asc" | "title-desc";
+const blogFilterSchema = z.object({
+  sortBy: z.enum(["newest", "oldest", "title-asc", "title-desc"]),
+  selectedTag: z.string().nullable(),
+});
 
-const sortLabels: Record<SortOption, string> = {
+type BlogFilterForm = z.infer<typeof blogFilterSchema>;
+
+const sortLabels: Record<BlogFilterForm["sortBy"], string> = {
   newest: "최신순",
   oldest: "오래된순",
   "title-asc": "제목 ↑",
@@ -19,8 +27,16 @@ interface BlogContentProps {
 }
 
 export default function BlogContent({ posts, allTags }: BlogContentProps) {
-  const [sortBy, setSortBy] = useState<SortOption>("newest");
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const { setValue, control } = useForm<BlogFilterForm>({
+    resolver: zodResolver(blogFilterSchema),
+    defaultValues: {
+      sortBy: "newest",
+      selectedTag: null,
+    },
+  });
+
+  const sortBy = useWatch({ control, name: "sortBy" });
+  const selectedTag = useWatch({ control, name: "selectedTag" });
 
   const filteredAndSorted = useMemo(() => {
     let result = [...posts];
@@ -54,7 +70,8 @@ export default function BlogContent({ posts, allTags }: BlogContentProps) {
         {/* 태그 필터 */}
         <div className="flex flex-wrap gap-2">
           <button
-            onClick={() => setSelectedTag(null)}
+            type="button"
+            onClick={() => setValue("selectedTag", null)}
             className={`rounded-full px-3 py-1.5 text-xs font-medium transition-all ${
               selectedTag === null
                 ? "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900"
@@ -65,8 +82,11 @@ export default function BlogContent({ posts, allTags }: BlogContentProps) {
           </button>
           {allTags.map((tag) => (
             <button
+              type="button"
               key={tag}
-              onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
+              onClick={() =>
+                setValue("selectedTag", selectedTag === tag ? null : tag)
+              }
               className={`rounded-full px-3 py-1.5 text-xs font-medium transition-all ${
                 selectedTag === tag
                   ? "bg-blue-600 text-white dark:bg-blue-500"
@@ -80,10 +100,13 @@ export default function BlogContent({ posts, allTags }: BlogContentProps) {
 
         {/* 정렬 버튼 */}
         <div className="flex items-center gap-1 rounded-lg border border-zinc-200 bg-zinc-50 p-1 dark:border-zinc-700 dark:bg-zinc-800/50">
-          {(Object.keys(sortLabels) as SortOption[]).map((option) => (
+          {(
+            Object.keys(sortLabels) as Array<BlogFilterForm["sortBy"]>
+          ).map((option) => (
             <button
+              type="button"
               key={option}
-              onClick={() => setSortBy(option)}
+              onClick={() => setValue("sortBy", option)}
               className={`rounded-md px-3 py-1.5 text-xs font-medium whitespace-nowrap transition-all ${
                 sortBy === option
                   ? "bg-white text-zinc-900 shadow-sm dark:bg-zinc-700 dark:text-zinc-100"
@@ -102,7 +125,8 @@ export default function BlogContent({ posts, allTags }: BlogContentProps) {
           <span className="mr-1 inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-0.5 text-xs text-blue-600 dark:bg-blue-950 dark:text-blue-400">
             {selectedTag}
             <button
-              onClick={() => setSelectedTag(null)}
+              type="button"
+              onClick={() => setValue("selectedTag", null)}
               className="ml-0.5 hover:text-blue-800 dark:hover:text-blue-200"
               aria-label="태그 필터 해제"
             >
@@ -129,7 +153,8 @@ export default function BlogContent({ posts, allTags }: BlogContentProps) {
           </p>
           {selectedTag && (
             <button
-              onClick={() => setSelectedTag(null)}
+              type="button"
+              onClick={() => setValue("selectedTag", null)}
               className="mt-3 text-sm text-blue-600 hover:underline dark:text-blue-400"
             >
               전체 글 보기
