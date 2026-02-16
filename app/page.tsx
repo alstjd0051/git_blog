@@ -1,8 +1,14 @@
 import Link from "next/link";
-import { getAllPosts } from "@/lib/posts";
-import PostCard from "@/components/PostCard";
+import type { Metadata } from "next";
+import { getAllPosts } from "../components/lib/posts";
+import PostCard from "../components/PostCard";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "TylerSong Blog",
+  description: "개발, AI, 머신러닝, 그리고 기술에 대한 이야기를 기록합니다.",
+};
+
+export default async function Home() {
   const posts = getAllPosts();
   const recentPosts = posts.slice(0, 4);
 

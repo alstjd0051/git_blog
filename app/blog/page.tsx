@@ -1,13 +1,7 @@
-import type { Metadata } from "next";
-import { getAllPosts } from "@/lib/posts";
-import PostCard from "@/components/PostCard";
+import { getAllPosts } from "../../components/lib/posts";
+import PostCard from "../../components/PostCard";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description: "모든 블로그 글 목록입니다.",
-};
-
-export default function BlogPage() {
+export default async function BlogPage() {
   const posts = getAllPosts();
 
   return (

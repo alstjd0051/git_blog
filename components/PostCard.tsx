@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
-import type { PostMeta } from "@/lib/posts";
+import type { PostMeta } from "./lib/posts";
 
 export default function PostCard({ post }: { post: PostMeta }) {
   return (
