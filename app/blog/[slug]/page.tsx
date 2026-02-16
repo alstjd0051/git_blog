@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { ko } from "date-fns/locale";
 import { getPostBySlug, getAllPostSlugs } from "@/components/lib/posts";
 import { notFound } from "next/navigation";
+import Utterances from "@/components/Utterances";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -91,6 +92,9 @@ export default async function PostPage({ params }: Props) {
         className="prose"
         dangerouslySetInnerHTML={{ __html: post.contentHtml }}
       />
+
+      {/* Comments */}
+      <Utterances />
     </div>
   );
 }
