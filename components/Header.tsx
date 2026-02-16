@@ -32,16 +32,20 @@ export default function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
 
-  // Header 등장 애니메이션
   useGSAP(() => {
     gsap.fromTo(
       headerRef.current,
-      { y: -30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
+      { y: -30, opacity: 0, backdropFilter: "blur(0px)" },
+      {
+        y: 0,
+        opacity: 1,
+        backdropFilter: "blur(40px)",
+        duration: 0.8,
+        ease: "power3.out",
+      },
     );
   });
 
-  // 로고 글자 등장 애니메이션 + hover/active 핸들러
   const { contextSafe } = useGSAP(
     () => {
       gsap.fromTo(
@@ -116,7 +120,7 @@ export default function Header() {
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-50 border-b border-zinc-200 bg-white/80 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/80"
+      className="sticky top-0 z-50 border-b border-white/10 bg-white/6 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_4px_30px_rgba(0,0,0,0.15)]"
     >
       <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
         <div
@@ -129,7 +133,7 @@ export default function Header() {
         >
           <Link
             href="/"
-            className={`text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 ${chocolateClassicalSans.variable} flex items-center gap-0.5`}
+            className={`text-xl font-bold tracking-tight text-white/90 ${chocolateClassicalSans.variable} flex items-center gap-0.5`}
             style={{
               lineHeight: 1,
               fontFamily: "var(--font-chocolate-classical-sans)",
@@ -144,7 +148,7 @@ export default function Header() {
               </span>
             ))}
             <span className="inline-block w-1" />
-            <span className="text-blue-600 dark:text-blue-400 flex">
+            <span className="flex text-blue-400">
               {["S", "o", "n", "g"].map((char, i) => (
                 <span
                   key={`s-${i}`}
@@ -168,10 +172,10 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-medium transition-colors ${
+                className={`text-sm font-medium transition-all ${
                   isActive
-                    ? "text-blue-600 dark:text-blue-400"
-                    : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+                    ? "text-blue-400"
+                    : "text-white/50 hover:text-white/90"
                 }`}
               >
                 {item.label}
@@ -187,20 +191,20 @@ export default function Header() {
           aria-label="Toggle menu"
         >
           <span
-            className={`h-0.5 w-5 bg-zinc-700 transition-all dark:bg-zinc-300 ${mobileOpen ? "translate-y-2 rotate-45" : ""}`}
+            className={`h-0.5 w-5 bg-white/70 transition-all ${mobileOpen ? "translate-y-2 rotate-45" : ""}`}
           />
           <span
-            className={`h-0.5 w-5 bg-zinc-700 dark:bg-zinc-300 ${mobileOpen ? "opacity-0" : ""}`}
+            className={`h-0.5 w-5 bg-white/70 ${mobileOpen ? "opacity-0" : ""}`}
           />
           <span
-            className={`h-0.5 w-5 bg-zinc-700 transition-all dark:bg-zinc-300 ${mobileOpen ? "-translate-y-2 -rotate-45" : ""}`}
+            className={`h-0.5 w-5 bg-white/70 transition-all ${mobileOpen ? "-translate-y-2 -rotate-45" : ""}`}
           />
         </button>
       </div>
 
       {/* Mobile nav */}
       {mobileOpen && (
-        <nav className="flex flex-col gap-4 border-t border-zinc-200 px-6 py-4 dark:border-zinc-800 sm:hidden">
+        <nav className="flex flex-col gap-4 border-t border-white/8 bg-white/4 px-6 py-4 backdrop-blur-xl sm:hidden">
           {navItems.map((item) => {
             const isActive =
               item.href === "/"
@@ -213,8 +217,8 @@ export default function Header() {
                 onClick={() => setMobileOpen(false)}
                 className={`text-sm font-medium ${
                   isActive
-                    ? "text-blue-600 dark:text-blue-400"
-                    : "text-zinc-600 dark:text-zinc-400"
+                    ? "text-blue-400"
+                    : "text-white/50"
                 }`}
               >
                 {item.label}

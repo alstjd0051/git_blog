@@ -72,10 +72,10 @@ export default function BlogContent({ posts, allTags }: BlogContentProps) {
           <button
             type="button"
             onClick={() => setValue("selectedTag", null)}
-            className={`rounded-full px-3 py-1.5 text-xs font-medium transition-all ${
+            className={`rounded-full px-3 py-1.5 text-xs font-medium transition-all backdrop-blur-sm border ${
               selectedTag === null
-                ? "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900"
-                : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
+                ? "bg-white/20 text-white border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]"
+                : "bg-white/6 text-white/50 border-white/8 hover:bg-white/12 hover:text-white/80"
             }`}
           >
             전체
@@ -87,10 +87,10 @@ export default function BlogContent({ posts, allTags }: BlogContentProps) {
               onClick={() =>
                 setValue("selectedTag", selectedTag === tag ? null : tag)
               }
-              className={`rounded-full px-3 py-1.5 text-xs font-medium transition-all ${
+              className={`rounded-full px-3 py-1.5 text-xs font-medium transition-all backdrop-blur-sm border ${
                 selectedTag === tag
-                  ? "bg-blue-600 text-white dark:bg-blue-500"
-                  : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
+                  ? "bg-blue-500/25 text-blue-400 border-blue-400/30 shadow-[inset_0_1px_0_rgba(96,165,250,0.15)]"
+                  : "bg-white/6 text-white/50 border-white/8 hover:bg-white/12 hover:text-white/80"
               }`}
             >
               {tag}
@@ -99,7 +99,7 @@ export default function BlogContent({ posts, allTags }: BlogContentProps) {
         </div>
 
         {/* 정렬 버튼 */}
-        <div className="flex items-center gap-1 rounded-lg border border-zinc-200 bg-zinc-50 p-1 dark:border-zinc-700 dark:bg-zinc-800/50">
+        <div className="flex items-center gap-1 rounded-lg border border-white/10 bg-white/4 p-1 backdrop-blur-md">
           {(
             Object.keys(sortLabels) as Array<BlogFilterForm["sortBy"]>
           ).map((option) => (
@@ -109,8 +109,8 @@ export default function BlogContent({ posts, allTags }: BlogContentProps) {
               onClick={() => setValue("sortBy", option)}
               className={`rounded-md px-3 py-1.5 text-xs font-medium whitespace-nowrap transition-all ${
                 sortBy === option
-                  ? "bg-white text-zinc-900 shadow-sm dark:bg-zinc-700 dark:text-zinc-100"
-                  : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
+                  ? "bg-white/12 text-white/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]"
+                  : "text-white/40 hover:text-white/70"
               }`}
             >
               {sortLabels[option]}
@@ -120,14 +120,14 @@ export default function BlogContent({ posts, allTags }: BlogContentProps) {
       </div>
 
       {/* 결과 카운트 */}
-      <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-400">
+      <p className="mt-4 text-sm text-white/40">
         {selectedTag && (
-          <span className="mr-1 inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-0.5 text-xs text-blue-600 dark:bg-blue-950 dark:text-blue-400">
+          <span className="mr-1 inline-flex items-center gap-1 rounded-full bg-blue-500/15 px-2 py-0.5 text-xs text-blue-400 border border-blue-400/20">
             {selectedTag}
             <button
               type="button"
               onClick={() => setValue("selectedTag", null)}
-              className="ml-0.5 hover:text-blue-800 dark:hover:text-blue-200"
+              className="ml-0.5 hover:text-blue-300"
               aria-label="태그 필터 해제"
             >
               ×
@@ -145,8 +145,8 @@ export default function BlogContent({ posts, allTags }: BlogContentProps) {
           ))}
         </div>
       ) : (
-        <div className="mt-6 rounded-2xl border border-dashed border-zinc-300 bg-zinc-50 px-8 py-16 text-center dark:border-zinc-700 dark:bg-zinc-900">
-          <p className="text-lg font-medium text-zinc-500 dark:text-zinc-400">
+        <div className="glass-card glass-refraction mt-6 rounded-2xl border border-dashed border-white/12 px-8 py-16 text-center">
+          <p className="text-lg font-medium text-white/50">
             {selectedTag
               ? `"${selectedTag}" 태그의 글이 없습니다.`
               : "아직 작성된 글이 없습니다."}
@@ -155,7 +155,7 @@ export default function BlogContent({ posts, allTags }: BlogContentProps) {
             <button
               type="button"
               onClick={() => setValue("selectedTag", null)}
-              className="mt-3 text-sm text-blue-600 hover:underline dark:text-blue-400"
+              className="mt-3 text-sm text-blue-400 hover:underline"
             >
               전체 글 보기
             </button>
