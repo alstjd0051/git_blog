@@ -1,8 +1,12 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { remark } from "remark";
-import html from "remark-html";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkGfm from "remark-gfm";
+import remarkRehype from "remark-rehype";
+import rehypePrettyCode from "rehype-pretty-code";
+import rehypeStringify from "rehype-stringify";
 
 const postsDirectory = path.join(process.cwd(), "content/posts");
 
@@ -60,7 +64,19 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
-  const processedContent = await remark().use(html).process(content);
+  const processedContent = await unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypePrettyCode, {
+      theme: {
+        dark: "github-dark-dimmed",
+        light: "github-light",
+      },
+      keepBackground: true,
+    })
+    .use(rehypeStringify)
+    .process(content);
   const contentHtml = processedContent.toString();
 
   return {

@@ -60,6 +60,7 @@ body {
 
 .prose strong { color: #111827; font-weight: 600; }
 
+/* 인라인 코드 */
 .prose code {
   background-color: #f3f4f6;
   border-radius: 0.25rem;
@@ -68,9 +69,15 @@ body {
   font-family: var(--font-mono), monospace;
 }
 
+/* rehype-pretty-code: figure 래퍼 */
+.prose figure[data-rehype-pretty-code-figure] {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  position: relative;
+}
+
+/* rehype-pretty-code: pre 블록 (라이트 모드) */
 .prose pre {
-  background-color: #1f2937;
-  color: #e5e7eb;
   border-radius: 0.75rem;
   padding: 1.25rem;
   overflow-x: auto;
@@ -78,13 +85,56 @@ body {
   margin-bottom: 1.5em;
   font-size: 0.875rem;
   line-height: 1.7;
+  border: 1px solid #e5e7eb;
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
 }
 
+/* rehype-pretty-code: code 안의 span 색상 (라이트 모드) */
 .prose pre code {
   background: none;
   padding: 0;
-  color: inherit;
   font-size: inherit;
+  font-family: var(--font-mono), monospace;
+  color: inherit;
+}
+
+.prose pre code span {
+  color: var(--shiki-light);
+}
+
+/* 코드 블록 제목 (언어 표시) */
+.prose figure[data-rehype-pretty-code-figure] > figcaption {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background-color: #e5e7eb;
+  color: #4b5563;
+  font-family: var(--font-mono), monospace;
+}
+
+/* 코드 라인 */
+.prose pre code > [data-line] {
+  display: inline-block;
+  width: 100%;
+  padding: 0 0.25rem;
+}
+
+/* 하이라이트된 라인 */
+.prose pre code > [data-highlighted-line] {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-left: 2px solid #3b82f6;
+  padding-left: calc(0.25rem - 2px);
+}
+
+/* 인라인 코드: pre 내부가 아닌 경우만 스타일 적용 */
+.prose :not(pre) > code {
+  background-color: #f3f4f6;
+  border-radius: 0.25rem;
+  padding: 0.15em 0.4em;
+  font-size: 0.875em;
 }
 
 .prose blockquote {
@@ -152,8 +202,27 @@ body {
   .prose strong { color: #f3f4f6; }
   .prose a { color: #60a5fa; }
   .prose a:hover { color: #93bbfd; }
-  .prose code { background-color: #1f2937; color: #e5e7eb; }
-  .prose pre { background-color: #111827; }
+  .prose :not(pre) > code { background-color: #1f2937; color: #e5e7eb; }
+
+  /* 다크모드: shiki 다크 테마 커스텀 프로퍼티 사용 */
+  .prose pre {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
+    border-color: #374151;
+  }
+
+  .prose pre code span {
+    color: var(--shiki-dark);
+  }
+
+  .prose figure[data-rehype-pretty-code-figure] > figcaption {
+    background-color: #374151;
+    color: #d1d5db;
+  }
+
+  .prose pre code > [data-highlighted-line] {
+    background-color: rgba(59, 130, 246, 0.15);
+  }
   .prose blockquote { border-left-color: #3b82f6; color: #9ca3af; }
   .prose hr { border-color: #374151; }
   .prose th { background-color: #1f2937; }
