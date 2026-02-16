@@ -3,6 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -19,7 +26,7 @@ export default function Header() {
       <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
         <Link
           href="/"
-          className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100"
+          className={`text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 ${poppins.variable}`}
         >
           Tyler<span className="text-blue-600">Song</span>
         </Link>

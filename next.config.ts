@@ -3,7 +3,9 @@ import { resolve } from "path";
 
 const nextConfig: NextConfig = {
   output: "export",
-  outputFileTracingRoot: resolve(__dirname),
+  turbopack: {
+    root: resolve(__dirname),
+  },
   images: {
     unoptimized: true,
   },
