@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getAllPosts } from "../components/lib/posts";
-import PostCard from "../components/PostCard";
+import { getAllPosts } from "@/components/lib/posts";
+import PostCard from "@/components/PostCard";
 
 export const metadata: Metadata = {
   title: "TylerSong Blog",

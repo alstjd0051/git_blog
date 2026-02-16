@@ -1,5 +1,5 @@
-import { getAllPosts } from "../../components/lib/posts";
-import PostCard from "../../components/PostCard";
+import { getAllPosts } from "@/components/lib/posts";
+import PostCard from "@/components/PostCard";
 
 export default async function BlogPage() {
   const posts = getAllPosts();

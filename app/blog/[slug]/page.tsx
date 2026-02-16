@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
-import { getPostBySlug, getAllPostSlugs } from "../../../components/lib/posts";
+import { getPostBySlug, getAllPostSlugs } from "@/components/lib/posts";
 import { notFound } from "next/navigation";
 
 interface Props {
