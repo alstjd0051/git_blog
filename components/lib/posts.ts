@@ -4,7 +4,9 @@ import matter from "gray-matter";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
+import remarkToc from "remark-toc";
 import remarkRehype from "remark-rehype";
+import rehypeSlug from "rehype-slug";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeStringify from "rehype-stringify";
 
@@ -67,7 +69,9 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   const processedContent = await unified()
     .use(remarkParse)
     .use(remarkGfm)
+    .use(remarkToc, { heading: "목차|Table of Contents|TOC", maxDepth: 3, tight: true })
     .use(remarkRehype)
+    .use(rehypeSlug)
     .use(rehypePrettyCode, {
       theme: {
         dark: "github-dark-dimmed",

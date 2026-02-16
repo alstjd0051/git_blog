@@ -336,6 +336,38 @@ body {
   color: #f3f4f6;
 }
 
+/* 목차(TOC) 스타일 */
+.prose nav {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.5em;
+  margin-bottom: 2em;
+}
+
+.prose nav > ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.prose nav a {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.prose nav a:hover {
+  color: #60a5fa;
+}
+
+/* 헤딩 앵커 링크 */
+.prose :is(h1, h2, h3, h4, h5, h6) {
+  scroll-margin-top: 5rem;
+}
+
 /* 스크롤바 스타일링 */
 ::-webkit-scrollbar {
   width: 8px;
