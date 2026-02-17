@@ -1,5 +1,5 @@
 import { backendLibs, frontendLibs } from "@/components/lib/about_data";
-import TagChip from "@/components/pages/about/TagChip";
+import TagChip from "./TagChip";
 
 export default function LibrarySection() {
   return (

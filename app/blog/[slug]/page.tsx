@@ -4,7 +4,8 @@ import { format } from "date-fns";
 import { ko } from "date-fns/locale";
 import { getPostBySlug, getAllPostSlugs } from "@/components/lib/posts";
 import { notFound } from "next/navigation";
-import Utterances from "@/components/Utterances";
+import Utterances from "@/components/features/blog/Utterances";
+import BlogArticle from "@/components/features/blog/BlogArticle";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -88,10 +89,7 @@ export default async function PostPage({ params }: Props) {
       <hr className="mb-10 border-white/8" />
 
       {/* Post content */}
-      <article
-        className="prose"
-        dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-      />
+      <BlogArticle contentHtml={post.contentHtml} />
 
       {/* Comments */}
       <Utterances />

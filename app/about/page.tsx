@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import ProfileSection from "@/components/pages/about/ProfileSection";
-import ExperienceSection from "@/components/pages/about/ExperienceSection";
-import TechStackSection from "@/components/pages/about/TechStackSection";
-import LibrarySection from "@/components/pages/about/LibrarySection";
-import InfraSection from "@/components/pages/about/InfraSection";
-import ValuesSection from "@/components/pages/about/ValuesSection";
-import LinksSection from "@/components/pages/about/LinksSection";
+import ProfileSection from "@/components/features/about/ProfileSection";
+import ExperienceSection from "@/components/features/about/ExperienceSection";
+import TechStackSection from "@/components/features/about/TechStackSection";
+import LibrarySection from "@/components/features/about/LibrarySection";
+import InfraSection from "@/components/features/about/InfraSection";
+import ValuesSection from "@/components/features/about/ValuesSection";
+import LinksSection from "@/components/features/about/LinksSection";
 
 export const metadata: Metadata = {
   title: "About",

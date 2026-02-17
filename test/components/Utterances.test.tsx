@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, cleanup } from "@testing-library/react";
-import Utterances from "@/components/Utterances";
+import Utterances from "@/components/features/blog/Utterances";
 
 describe("Utterances 댓글 컴포넌트", () => {
   let appendChildSpy: ReturnType<typeof vi.spyOn>;

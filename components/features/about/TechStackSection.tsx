@@ -1,5 +1,5 @@
 import { backendStacks, frontendStacks } from "@/components/lib/about_data";
-import SkillBar from "@/components/pages/about/SkillBar";
+import SkillBar from "./SkillBar";
 
 export default function TechStackSection() {
   return (

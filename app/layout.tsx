@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import Header from "@/components/Header";
+import Header from "@/components/shared/layout/Header";
+import MermaidModal from "@/components/features/blog/MermaidModal";
 import "./globals.css";
 
 const inter = Inter({
@@ -48,6 +49,7 @@ export default function RootLayout({
 
         <Header />
         <main className="relative flex-1">{children}</main>
+        <MermaidModal />
         <Analytics />
       </body>
     </html>
