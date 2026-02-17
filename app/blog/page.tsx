@@ -1,5 +1,5 @@
 import { getAllPosts, getAllTags } from "@/components/lib/posts";
-import BlogContent from "@/components/BlogContent";
+import BlogContent from "@/components/features/blog/BlogContent";
 
 export default async function BlogPage() {
   const posts = getAllPosts();

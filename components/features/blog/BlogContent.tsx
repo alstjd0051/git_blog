@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { PostMeta } from "./lib/posts";
+import type { PostMeta } from "@/components/lib/posts";
 import PostCard from "./PostCard";
 
 const blogFilterSchema = z.object({

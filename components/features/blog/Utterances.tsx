@@ -21,10 +21,8 @@ export default function Utterances({
     const container = containerRef.current;
     if (!container) return;
 
-    // 이미 로드된 utterances가 있으면 제거
-    while (container.firstChild) {
-      container.removeChild(container.firstChild);
-    }
+    // Strict Mode 이중 마운트 방지: 이미 스크립트가 있으면 건너뜀
+    if (container.querySelector('script[src*="utteranc"]')) return;
 
     const script = document.createElement("script");
     script.src = "https://utteranc.es/client.js";
@@ -36,12 +34,6 @@ export default function Utterances({
     script.async = true;
 
     container.appendChild(script);
-
-    return () => {
-      while (container.firstChild) {
-        container.removeChild(container.firstChild);
-      }
-    };
   }, [issueTerm, theme, label]);
 
   return (

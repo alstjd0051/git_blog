@@ -1,4 +1,4 @@
-import GitHubAvatar from "@/components/GitHubAvatar";
+import GitHubAvatar from "@/components/shared/ui/GitHubAvatar";
 import {
   CAREER_START_YEAR,
   GITHUB_USERNAME,
